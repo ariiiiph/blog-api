@@ -1,0 +1,1556 @@
+definitions:
+  models.CategoryResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      slug:
+        type: string
+    type: object
+  models.CommentListResponse:
+    properties:
+      comments:
+        items:
+          $ref: '#/definitions/models.CommentResponse'
+        type: array
+      count:
+        type: integer
+      has_next:
+        type: boolean
+      has_previous:
+        type: boolean
+      limit:
+        type: integer
+      page:
+        type: integer
+      total_comments:
+        type: integer
+      total_pages:
+        type: integer
+    type: object
+  models.CommentResponse:
+    properties:
+      author_id:
+        type: integer
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      post_id:
+        type: integer
+    type: object
+  models.CreateCategoryAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.CategoryResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.CreateCategoryRequest:
+    properties:
+      name:
+        example: Technology
+        type: string
+      slug:
+        example: technology
+        type: string
+    type: object
+  models.CreateCommentAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.CommentResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.CreateCommentRequest:
+    properties:
+      content:
+        example: Great post, thanks for sharing!
+        type: string
+    type: object
+  models.CreatePostAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.PostResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.CreatePostRequest:
+    properties:
+      category_id:
+        example: 1
+        type: integer
+      content:
+        example: This is the content of my post.
+        type: string
+      slug:
+        example: my-first-post
+        type: string
+      title:
+        example: My First Post
+        type: string
+    type: object
+  models.CreateTagAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.TagResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.CreateTagRequest:
+    properties:
+      name:
+        example: Golang
+        type: string
+      slug:
+        example: golang
+        type: string
+    type: object
+  models.GetCategoryAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.CategoryResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.GetPostAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.PostResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.GetTagAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.TagResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.LikeCountAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.LikeCountResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.LikeCountResponse:
+    properties:
+      likes:
+        type: integer
+      post_id:
+        type: integer
+    type: object
+  models.ListCategoriesAPIResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.CategoryResponse'
+        type: array
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.ListCommentsAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.CommentListResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.ListPostsAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.PostListResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.ListTagsAPIResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.TagResponse'
+        type: array
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.LoginAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.LoginResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.LoginRequest:
+    properties:
+      email:
+        example: john@example.com
+        type: string
+      password:
+        example: password123
+        type: string
+    type: object
+  models.LoginResponse:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+      user:
+        $ref: '#/definitions/models.UserResponse'
+    type: object
+  models.LogoutRequest:
+    properties:
+      refresh_token:
+        type: string
+    type: object
+  models.PostListByTagAPIResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.PostResponse'
+        type: array
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.PostListResponse:
+    properties:
+      count:
+        type: integer
+      has_next:
+        type: boolean
+      has_previous:
+        type: boolean
+      limit:
+        type: integer
+      page:
+        type: integer
+      posts:
+        items:
+          $ref: '#/definitions/models.PostResponse'
+        type: array
+      search:
+        type: string
+      total_pages:
+        type: integer
+      total_posts:
+        type: integer
+    type: object
+  models.PostResponse:
+    properties:
+      author_id:
+        type: integer
+      category_id:
+        type: integer
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      published:
+        type: boolean
+      slug:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.RefreshTokenAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.RefreshTokenResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.RefreshTokenRequest:
+    properties:
+      refresh_token:
+        type: string
+    type: object
+  models.RefreshTokenResponse:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+    type: object
+  models.RegisterAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.RegisterResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.RegisterRequest:
+    properties:
+      email:
+        example: john@example.com
+        type: string
+      password:
+        example: password123
+        type: string
+    type: object
+  models.RegisterResponse:
+    properties:
+      user:
+        $ref: '#/definitions/models.UserResponse'
+    type: object
+  models.TagListAPIResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.TagResponse'
+        type: array
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.TagResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      slug:
+        type: string
+    type: object
+  models.UpdateCategoryRequest:
+    properties:
+      name:
+        example: Technology
+        type: string
+      slug:
+        example: technology
+        type: string
+    type: object
+  models.UpdateCommentRequest:
+    properties:
+      content:
+        example: Updated comment text.
+        type: string
+    type: object
+  models.UpdatePostRequest:
+    properties:
+      category_id:
+        example: 1
+        type: integer
+      content:
+        example: Updated content.
+        type: string
+      published:
+        example: true
+        type: boolean
+      slug:
+        example: my-updated-post
+        type: string
+      title:
+        example: My Updated Post
+        type: string
+    type: object
+  models.UpdateTagRequest:
+    properties:
+      name:
+        example: Golang
+        type: string
+      slug:
+        example: golang
+        type: string
+    type: object
+  models.UploadPostImageAPIResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.PostResponse'
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+  models.UserResponse:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      role:
+        type: string
+    type: object
+  utils.APIResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample Blog.
+  title: Blog API
+  version: "1.0"
+paths:
+  /api/categories:
+    get:
+      description: Retrieves all categories.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListCategoriesAPIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: List all categories
+      tags:
+      - Categories
+    post:
+      consumes:
+      - application/json
+      description: Admin only. Creates a new category with a name and slug.
+      parameters:
+      - description: Category data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateCategoryAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new category
+      tags:
+      - Categories
+  /api/categories/{id}:
+    delete:
+      description: Admin only. Deletes an existing category by ID.
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a category
+      tags:
+      - Categories
+    get:
+      description: Retrieves a single category by its ID.
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetCategoryAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Get a category by ID
+      tags:
+      - Categories
+    put:
+      consumes:
+      - application/json
+      description: Admin only. Updates an existing category's name and slug.
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated category data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a category
+      tags:
+      - Categories
+  /api/comments/{id}:
+    delete:
+      description: Deletes an existing comment. Allowed for the comment's author or
+        an admin.
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a comment
+      tags:
+      - Comments
+    put:
+      consumes:
+      - application/json
+      description: Updates an existing comment. Only the comment's author can update
+        it.
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated comment content
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCommentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a comment
+      tags:
+      - Comments
+  /api/posts:
+    get:
+      description: Retrieves a paginated list of posts, optionally filtered by search
+        term.
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Items per page (max 50)
+        in: query
+        name: limit
+        type: integer
+      - description: Search term
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListPostsAPIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: List posts
+      tags:
+      - Posts
+    post:
+      consumes:
+      - application/json
+      description: Creates a new blog post for the authenticated user.
+      parameters:
+      - description: Post data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePostRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreatePostAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new post
+      tags:
+      - Posts
+  /api/posts/{id}:
+    delete:
+      description: Deletes an existing post. Allowed for the post's author or an admin.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a post
+      tags:
+      - Posts
+    get:
+      description: Retrieves a single post by its ID.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetPostAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Get a post by ID
+      tags:
+      - Posts
+    put:
+      consumes:
+      - application/json
+      description: Updates an existing post. Only the post's author can update it.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated post data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePostRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a post
+      tags:
+      - Posts
+  /api/posts/{id}/comments:
+    get:
+      description: Retrieves a paginated list of comments for the specified post.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Items per page (max 50)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListCommentsAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: List comments for a post
+      tags:
+      - Comments
+    post:
+      consumes:
+      - application/json
+      description: Creates a new comment on the specified post for the authenticated
+        user.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Comment content
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCommentRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateCommentAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Add a comment to a post
+      tags:
+      - Comments
+  /api/posts/{id}/image:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Uploads a cover image for the specified post. Allowed for the post's
+        author or an admin. Replaces any existing image.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Image file (jpg, jpeg, png, webp; max 5MB)
+        in: formData
+        name: image
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UploadPostImageAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Upload a post's cover image
+      tags:
+      - Posts
+  /api/posts/{postID}/like:
+    delete:
+      description: Removes the authenticated user's like from the specified post.
+      parameters:
+      - description: Post ID
+        in: path
+        name: postID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Unlike a post
+      tags:
+      - Likes
+    post:
+      description: Adds a like to the specified post from the authenticated user.
+      parameters:
+      - description: Post ID
+        in: path
+        name: postID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Like a post
+      tags:
+      - Likes
+  /api/posts/{postID}/likes:
+    get:
+      description: Retrieves the total number of likes for the specified post.
+      parameters:
+      - description: Post ID
+        in: path
+        name: postID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LikeCountAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Get like count for a post
+      tags:
+      - Likes
+  /api/posts/{postID}/tags:
+    get:
+      description: Retrieves all tags attached to the specified post.
+      parameters:
+      - description: Post ID
+        in: path
+        name: postID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TagListAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Get tags for a post
+      tags:
+      - Post Tags
+  /api/posts/{postID}/tags/{tagID}:
+    delete:
+      description: Removes a tag from the specified post. Only the post's author can
+        modify its tags.
+      parameters:
+      - description: Post ID
+        in: path
+        name: postID
+        required: true
+        type: integer
+      - description: Tag ID
+        in: path
+        name: tagID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Remove a tag from a post
+      tags:
+      - Post Tags
+    post:
+      description: Adds a tag to the specified post. Only the post's author can modify
+        its tags.
+      parameters:
+      - description: Post ID
+        in: path
+        name: postID
+        required: true
+        type: integer
+      - description: Tag ID
+        in: path
+        name: tagID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Attach a tag to a post
+      tags:
+      - Post Tags
+  /api/tags:
+    get:
+      description: Retrieves all tags.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListTagsAPIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: List all tags
+      tags:
+      - Tags
+    post:
+      consumes:
+      - application/json
+      description: Admin only. Creates a new tag with a name and slug.
+      parameters:
+      - description: Tag data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateTagRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.CreateTagAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new tag
+      tags:
+      - Tags
+  /api/tags/{id}:
+    delete:
+      description: Admin only. Deletes an existing tag by ID.
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a tag
+      tags:
+      - Tags
+    get:
+      description: Retrieves a single tag by its ID.
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetTagAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Get a tag by ID
+      tags:
+      - Tags
+    put:
+      consumes:
+      - application/json
+      description: Admin only. Updates an existing tag's name and slug.
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated tag data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateTagRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a tag
+      tags:
+      - Tags
+  /api/tags/{tagID}/posts:
+    get:
+      description: Retrieves all posts attached to the specified tag.
+      parameters:
+      - description: Tag ID
+        in: path
+        name: tagID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.PostListByTagAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Get posts for a tag
+      tags:
+      - Post Tags
+  /api/users/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticates a user using an email and password.
+      parameters:
+      - description: User login credentials
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Log in a user
+      tags:
+      - Users
+  /api/users/logout:
+    post:
+      consumes:
+      - application/json
+      description: Invalidates the provided refresh token and logs the user out.
+      parameters:
+      - description: Refresh token to invalidate
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LogoutRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Log out a user
+      tags:
+      - Users
+  /api/users/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Exchanges a valid refresh token for a new access token and a new
+        refresh token.
+      parameters:
+      - description: Refresh token payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RefreshTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RefreshTokenAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Refresh authentication tokens
+      tags:
+      - Users
+  /api/users/register:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new user account with an email and password.
+      parameters:
+      - description: User registration data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.RegisterAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      summary: Register a new user
+      tags:
+      - Users
+securityDefinitions:
+  BearerAuth:
+    description: Type "Bearer" followed by a space and JWT token.
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

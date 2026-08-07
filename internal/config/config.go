@@ -3,7 +3,6 @@ package config
 import (
 	"flag"
 	"log"
-	"os"
 
 	"github.com/ilyakaznacheev/cleanenv"
 )
@@ -27,16 +26,19 @@ func LoadConfig() *Config {
 	flag.StringVar(&envPath, "config", "", "path to .env file")
 	flag.Parse()
 
-	if envPath == "" {
-		envPath = os.Getenv("CONFIG_PATH")
-	}
-	if envPath == "" {
-		envPath = "config/dev.env"
+	if envPath != "" {
+		err := cleanenv.ReadConfig(envPath, &cfg)
+		if err != nil {
+			log.Fatalf("Cannot read config file: %v", err)
+		}
+
+		return &cfg
 	}
 
-	err := cleanenv.ReadConfig(envPath, &cfg)
+	err := cleanenv.ReadEnv(&cfg)
 	if err != nil {
-		log.Fatalf("Cannot read .env file from %s: %v", envPath, err)
+		log.Fatalf("Cannot read environment variables: %v", err)
 	}
+
 	return &cfg
 }

@@ -1,0 +1,25 @@
+services:
+  blog-api:
+    container_name: blog-api
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      ENV: ${ENV}
+      DB_PATH: ${DB_PATH}
+      DB_NAME: ${DB_NAME}
+      HTTP_ADDRESS: ${HTTP_ADDRESS}
+      JWT_KEY: ${JWT_KEY}
+
+    volumes:
+      - blog-data:/app/sqlite
+      - blog-uploads:/app/uploads
+
+volumes:
+  blog-data:
+  blog-uploads:

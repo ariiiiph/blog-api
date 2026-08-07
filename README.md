@@ -38,6 +38,9 @@ The project follows a layered architecture with separated responsibilities betwe
 * Swagger API documentation
 * Middleware-based request handling
 * Database migrations
+* Docker containerization
+* Docker Compose support
+* Persistent storage using Docker volumes
 
 ---
 
@@ -48,6 +51,7 @@ The project follows a layered architecture with separated responsibilities betwe
 * **Authentication:** JWT + Refresh Tokens
 * **API Documentation:** Swagger
 * **Configuration:** cleanenv
+* **Containerization:** Docker + Docker Compose
 * **Architecture:** Layered Architecture
 * **API Testing:** Postman
 
@@ -79,25 +83,25 @@ Database
 
 ### Responsibilities
 
-* **Routes**
+### Routes
 
-  * Handle HTTP requests and responses
+* Handle HTTP requests and responses
 
-* **Services**
+### Services
 
-  * Contain business logic
+* Contain business logic
 
-* **Repositories**
+### Repositories
 
-  * Handle database operations
+* Handle database operations
 
-* **Models**
+### Models
 
-  * Define application entities
+* Define application entities
 
-* **Middlewares**
+### Middlewares
 
-  * Handle authentication, CORS, and request processing
+* Handle authentication, CORS, and request processing
 
 ---
 
@@ -109,15 +113,15 @@ backend/
 ├── cmd/
 │   └── api/
 │       └── main.go
-
+│
 ├── config/
 │   └── dev.env
-
+│
 ├── docs/
 │   ├── docs.go
 │   ├── swagger.json
 │   └── swagger.yaml
-
+│
 ├── internal/
 │   ├── config/
 │   │   └── config.go
@@ -127,22 +131,19 @@ backend/
 │   │   └── migrations/
 │   │
 │   ├── middlewares/
-│   │
 │   ├── models/
-│   │
 │   ├── repository/
-│   │
 │   ├── routes/
-│   │
 │   ├── service/
-│   │
 │   └── utils/
 │
 ├── sqlite/
-│
 ├── uploads/
 │   └── posts/
 │
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 ├── .env.example
 ├── .gitignore
 ├── go.mod
@@ -153,7 +154,7 @@ backend/
 
 # Database
 
-The project uses **SQLite** with versioned SQL migrations.
+The project uses **SQLite** with version-controlled SQL migrations.
 
 Implemented database features:
 
@@ -178,7 +179,15 @@ internal/db/migrations/
 
 # Configuration
 
-Create your environment file based on `.env.example`.
+The application supports two configuration methods.
+
+## Local Development
+
+For running the project directly with Go:
+
+```
+config/dev.env
+```
 
 Example:
 
@@ -193,50 +202,141 @@ HTTP_ADDRESS=localhost:8080
 JWT_KEY=your_secret_key
 ```
 
+Run:
+
+```bash
+go run ./cmd/api -config config/dev.env
+```
+
+---
+
+## Docker Environment
+
+When running with Docker Compose, environment variables are injected into the container.
+
+Create a `.env` file based on:
+
+```
+.env.example
+```
+
+Example:
+
+```env
+ENV=dev
+
+DB_PATH=sqlite/dev
+DB_NAME=api.db
+
+HTTP_ADDRESS=0.0.0.0:8080
+
+JWT_KEY=your_secret_key
+```
+
 ---
 
 # Running The Project
 
 ## Requirements
 
-* Go 1.20+
+* Go 1.26+
+* Docker
+* Docker Compose
 * Git
 
 ---
 
-## Clone Repository
+# Run Locally
+
+Clone repository:
 
 ```bash
 git clone https://github.com/ariiiiph/blog-api.git
 ```
 
-Move into the project:
+Move into project:
 
 ```bash
 cd blog-api
 ```
 
----
-
-## Install Dependencies
+Install dependencies:
 
 ```bash
 go mod download
 ```
 
----
-
-## Run Application
+Run:
 
 ```bash
-go run ./cmd/api
+go run ./cmd/api -config config/dev.env
 ```
 
-The server will start on:
+The API will start at:
 
 ```
-localhost:8080
+http://localhost:8080
 ```
+
+---
+
+# Run With Docker
+
+Build and start the application:
+
+```bash
+docker compose up --build
+```
+
+The API will be available at:
+
+```
+http://localhost:8080
+```
+
+Swagger:
+
+```
+http://localhost:8080/swagger/
+```
+
+Stop containers:
+
+```bash
+docker compose down
+```
+
+---
+
+# Docker Storage
+
+The application uses Docker volumes to persist data.
+
+Volumes:
+
+```
+blog-data
+```
+
+Stores:
+
+```
+SQLite database
+```
+
+---
+
+```
+blog-uploads
+```
+
+Stores:
+
+```
+Uploaded post images
+```
+
+This allows data to survive container recreation.
 
 ---
 
@@ -297,6 +397,9 @@ Swagger provides:
 | Pagination            | ✅      |
 | Image Upload          | ✅      |
 | Swagger Documentation | ✅      |
+| Docker Support        | ✅      |
+| Docker Compose        | ✅      |
+| Persistent Volumes    | ✅      |
 
 ---
 
@@ -328,18 +431,20 @@ Uploaded images are stored locally:
 uploads/posts/
 ```
 
+When using Docker, uploads are persisted using Docker volumes.
+
 ---
 
 # Future Improvements
 
-* Add Docker support
-* Add Docker Compose
+* Add automated unit and integration tests
 * Add PostgreSQL support
 * Add Redis caching
-* Add automated tests
 * Add CI/CD pipeline
 * Deploy to AWS
 * Add monitoring and logging
+* Improve security hardening
+* Add rate limiting
 
 ---
 
